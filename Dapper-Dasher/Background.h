@@ -40,6 +40,7 @@ public:
 
 	};
 
+	// functiile pentru a desena backgroundul,foregroundul si midgroungdul
 	void Draw_Background()
 	{
 		DrawTextureEx(img, posB, rotation, scale, WHITE);
@@ -58,6 +59,7 @@ public:
 		DrawTextureEx(imgFore, posF2, rotation, scale, WHITE);
 	}
 
+	// metoda pentru animatia backgroundruilor.
 	void Move(float deltaTime)
 	{
 		Move_Background(deltaTime, img.width, -20.0f, posB, pos2B, scale);
