@@ -15,4 +15,9 @@ public:
 			&& (rec.y + rec.height >= obs.y)
 			&& (rec.y <= obs.y + obs.height);
 	}
+
+	static void resetGame(Scarfy& s, Nebulas& n,int window_width,int window_heigth,int num)
+	{
+		s.initScarfy(window_width, window_heigth);
+	}
 };

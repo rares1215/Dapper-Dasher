@@ -16,13 +16,13 @@ public:
 
 	Nebulas(Texture2D s) : sprite(s) 
 	{
+		velocity = -450.f;
 		rec = { 0,0,0,0 };
 		pos = { 0,0 };
 	};
 
 	void initNebulas(int window_width, int window_heigth)
 	{
-		velocity = -450.f;
 
 		updateTime = 1.0f / 12.0f;
 

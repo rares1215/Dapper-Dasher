@@ -18,7 +18,7 @@ int main()
 
 	// textura pentru nebula
 	Texture2D nebula_sheets = LoadTexture("textures/12_nebula_spritesheet.png");
-	const int nebulaNum = 10;
+	const int nebulaNum = 3;
 
 	//Cream obstacolele.
 	Nebulas* nebula[nebulaNum];
@@ -98,6 +98,7 @@ int main()
 					for (int i = 0; i < nebulaNum; i++)
 					{
 						nebula[i]->initNebulas(window.width + 500 * i, window.heigth);
+						nebula[i]->velocity = -450.0f;
 					}
 					// setam starea jocului la fals din nou pentru a putea relua jocul.
 					isGameOver = false;
@@ -124,6 +125,19 @@ int main()
 		else
 		{
 			DrawText("Congrats! You Win!", window.width / 2 - 200, window.heigth / 2, 30, GREEN);
+			DrawText("Press enter proceed to the next level", window.width / 2 - 200, window.heigth / 2 + 50, 30, GREEN);
+			if (IsKeyPressed(KEY_ENTER))
+			{
+				// initializam personajul la pozitia initiala si cu valoriile initiale.
+				scarfy.initScarfy(window.width, window.heigth);
+
+				// initializam obstacolul la pozitia initiala si cu valoriile initiale.
+				for (int i = 0; i < nebulaNum; i++)
+				{
+					nebula[i]->initNebulas(window.width + 500 * i, window.heigth);
+					nebula[i]->velocity -= 50.0f;
+				}
+			}
 		}
 
 		EndDrawing();
