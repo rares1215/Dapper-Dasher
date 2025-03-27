@@ -149,8 +149,10 @@
     <Image Include="textures\scarfy.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Background.h" />
     <ClInclude Include="Entity.h" />
-    <ClInclude Include="Nebula.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="Nebulas.h" />
     <ClInclude Include="Scarfy.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
