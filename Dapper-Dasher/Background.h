@@ -62,8 +62,8 @@ public:
 	// metoda pentru animatia backgroundruilor.
 	void Move(float deltaTime)
 	{
-		Move_Background(deltaTime, img.width, -20.0f, posB, pos2B, scale);
-		Move_Background(deltaTime, imgMid.width, -40.0f, posM, posM2,scale);
-		Move_Background(deltaTime, imgFore.width, -80.0f, posF, posF2,scale);
+		Move_Background(deltaTime, img.width, -200.0f, posB, pos2B, scale);
+		Move_Background(deltaTime, imgMid.width, -200.0f, posM, posM2,scale);
+		Move_Background(deltaTime, imgFore.width, -200.0f, posF, posF2,scale);
 	}
 };

@@ -22,6 +22,6 @@ protected:
 	{
 		pos1.x += velocity * deltaTime;
 		pos2.x = pos1.x + width* scale;
-		if (pos2.x <= -width * scale) pos1.x = 0;
+		if (pos1.x <= -width * scale) pos1.x = 0.0;
 	}
 };

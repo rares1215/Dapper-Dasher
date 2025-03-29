@@ -1,4 +1,5 @@
 #pragma once
+// am creat un header separat in care sa includem tot restul codului pentru a include doar acest header in fuctia main.
 #include "Window.h"
 #include "Scarfy.h"
 #include "Nebulas.h"
@@ -8,6 +9,8 @@
 class Game
 {
 public:
+	static int level;
+	//  metoda prin care verficiam daca obiectele s au ciocnit
 	static bool checkColision(Rectangle rec, Rectangle obs)
 	{
 		return (rec.x <= obs.x + obs.width)
@@ -15,9 +18,6 @@ public:
 			&& (rec.y + rec.height >= obs.y)
 			&& (rec.y <= obs.y + obs.height);
 	}
-
-	static void resetGame(Scarfy& s, Nebulas& n,int window_width,int window_heigth,int num)
-	{
-		s.initScarfy(window_width, window_heigth);
-	}
 };
+
+int Game::level = 1;

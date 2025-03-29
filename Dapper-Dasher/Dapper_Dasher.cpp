@@ -18,15 +18,17 @@ int main()
 
 	// textura pentru nebula
 	Texture2D nebula_sheets = LoadTexture("textures/12_nebula_spritesheet.png");
-	const int nebulaNum = 3;
+	const int nebulaNum = 10;
 
 	//Cream obstacolele.
 	Nebulas* nebula[nebulaNum];
+	// spatiu dintre obstacole.
+	int space_between_nebulas = 1000;
 
 	for (int i = 0; i < nebulaNum; i++)
 	{
 		 nebula[i] = new Nebulas(nebula_sheets);
-		 nebula[i]->initNebulas(window.width + 500*i, window.heigth);
+		 nebula[i]->initNebulas(window.width + space_between_nebulas*i, window.heigth);
 	}
 
 	// textura pentru background midground si foreground.
@@ -56,6 +58,7 @@ int main()
 		background.Draw_Midground();
 		background.Draw_Foreground();
 		background.Move(dT);
+		DrawText(TextFormat("Level %i", Game::level), window.width / 2, window.heigth / 8, 30, PURPLE);
 
 		// cream 2 rec uri pentru personaj si obstacole pentru a putea verifica coliziunea dintre ele.
 		for (int i = 0; i < nebulaNum; i++)
@@ -88,23 +91,28 @@ int main()
 			{
 				// daca este true( personajul si unul din obstacole s au ciocnit) atunci afisam pe ecran textul "Game Over".
 				DrawText("Game Over!", window.width / 2 - 100, window.heigth / 2, 30, PINK);
+
 				// Posibilitatea de a reseta jocul si a incerca din nou sa treci de toate obstacolele apasand tasta r. 
 				if (IsKeyPressed(KEY_R))
 				{
+
+					//Resetarea nivelului.
+					Game::level = 1;
+
 					// initializam personajul la pozitia initiala si cu valoriile initiale.
 					scarfy.initScarfy(window.width, window.heigth);
 
 					// initializam obstacolul la pozitia initiala si cu valoriile initiale.
 					for (int i = 0; i < nebulaNum; i++)
 					{
-						nebula[i]->initNebulas(window.width + 500 * i, window.heigth);
+						nebula[i]->initNebulas(window.width + space_between_nebulas * i, window.heigth);
 						nebula[i]->velocity = -450.0f;
 					}
 					// setam starea jocului la fals din nou pentru a putea relua jocul.
 					isGameOver = false;
 				}
 			}
-			// Daca nu am lovit nici un obstacol atunci jocul continua normal.
+			// Daca nu am lovit nici un obstacol atunci jocul continuanormal.
 			else
 			{
 				//Logica pentru personaj
@@ -124,17 +132,18 @@ int main()
 		// daca jocul s a terminat cu victorie dupa ce am depasit obstacolele afisam textul de mai jos si oprim jocul.
 		else
 		{
-			DrawText("Congrats! You Win!", window.width / 2 - 200, window.heigth / 2, 30, GREEN);
-			DrawText("Press enter proceed to the next level", window.width / 2 - 200, window.heigth / 2 + 50, 30, GREEN);
+			DrawText(TextFormat("You finished lvl %i ",Game::level), window.width / 2 - 200, window.heigth / 2, 30, GREEN);
+			DrawText("Press enter to proceed to the next level.", window.width / 2 - 200, window.heigth / 2 + 50, 30, GREEN);
 			if (IsKeyPressed(KEY_ENTER))
 			{
+				Game::level++;
 				// initializam personajul la pozitia initiala si cu valoriile initiale.
 				scarfy.initScarfy(window.width, window.heigth);
 
-				// initializam obstacolul la pozitia initiala si cu valoriile initiale.
+				// initializam obstacolul la pozitia initiala si crestem viteza obstacolelor pentru a face jocul mai greu.
 				for (int i = 0; i < nebulaNum; i++)
 				{
-					nebula[i]->initNebulas(window.width + 500 * i, window.heigth);
+					nebula[i]->initNebulas(window.width + space_between_nebulas * i, window.heigth);
 					nebula[i]->velocity -= 50.0f;
 				}
 			}
